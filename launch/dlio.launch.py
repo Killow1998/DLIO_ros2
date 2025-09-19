@@ -19,9 +19,10 @@ def generate_launch_description():
     current_pkg = FindPackageShare('direct_lidar_inertial_odometry')
 
     # Set default arguments
-    rviz = LaunchConfiguration('rviz', default='false')
+    rviz = LaunchConfiguration('rviz', default='true')
     pointcloud_topic = LaunchConfiguration('pointcloud_topic', default='points_raw')
-    imu_topic = LaunchConfiguration('imu_topic', default='imu_raw')
+    livox_topic = LaunchConfiguration('livox_topic', default='/livox/lidar')
+    imu_topic = LaunchConfiguration('imu_topic', default='/livox/imu')
 
     # Define arguments
     declare_rviz_arg = DeclareLaunchArgument(
@@ -33,6 +34,11 @@ def generate_launch_description():
         'pointcloud_topic',
         default_value=pointcloud_topic,
         description='Pointcloud topic name'
+    )
+    declare_livox_topic_arg = DeclareLaunchArgument(
+        'livox_topic',
+        default_value=livox_topic,
+        description='LivoxLidar topic name'
     )
     declare_imu_topic_arg = DeclareLaunchArgument(
         'imu_topic',
@@ -52,6 +58,7 @@ def generate_launch_description():
         parameters=[dlio_yaml_path, dlio_params_yaml_path],
         remappings=[
             ('pointcloud', pointcloud_topic),
+            ('livox', livox_topic),
             ('imu', imu_topic),
             ('odom', 'dlio/odom_node/odom'),
             ('pose', 'dlio/odom_node/pose'),
@@ -87,6 +94,7 @@ def generate_launch_description():
     return LaunchDescription([
         declare_rviz_arg,
         declare_pointcloud_topic_arg,
+        declare_livox_topic_arg,
         declare_imu_topic_arg,
         dlio_odom_node,
         dlio_map_node,

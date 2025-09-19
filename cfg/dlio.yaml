@@ -11,16 +11,19 @@
 ###########################################################
 
 /**:
+  # modify by h2q 091925
   ros__parameters:
 
     version: 1.1.1
 
     adaptive: true
-
+    lidar/type: 3 # 0 for OUSTER, 1 for VELODYNE, 2 for HESAI, 3 for LIVOX, 4 for UNKNOWN
+    # livox should use CustomMsg not PointCloud2
     pointcloud/deskew: true
     pointcloud/voxelize: true
 
     imu/calibration: true
+    imu/normalized: false
     imu/intrinsics/accel/bias: [ 0.0, 0.0, 0.0 ]
     imu/intrinsics/accel/sm:   [ 1.,  0.,  0.,
                                  0.,  1.,  0.,

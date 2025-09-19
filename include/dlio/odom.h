@@ -14,9 +14,10 @@
 
 // ROS
 #include "rclcpp/rclcpp.hpp"
-#include <nav_msgs/msg/odometry.hpp>
-#include <geometry_msgs/msg/pose_stamped.hpp>
 #include <geometry_msgs/msg/pose_array.hpp>
+#include <geometry_msgs/msg/pose_stamped.hpp>
+#include <livox_ros_driver2/msg/custom_msg.hpp> // modify by h2q
+#include <nav_msgs/msg/odometry.hpp>
 #include <nav_msgs/msg/path.hpp>
 #include <sensor_msgs/msg/imu.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
@@ -55,6 +56,8 @@ private:
   void getParams();
 
   void callbackPointCloud(const sensor_msgs::msg::PointCloud2::SharedPtr pc);
+  void callbackLivoxCustomMsg(
+      const livox_ros_driver2::msg::CustomMsg::SharedPtr msg);
   void callbackImu(const sensor_msgs::msg::Imu::SharedPtr imu);
 
   void publishPose();
@@ -112,6 +115,7 @@ private:
 
   // Subscribers
   rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr lidar_sub;
+  rclcpp::Subscription<livox_ros_driver2::msg::CustomMsg>::SharedPtr livox_sub;
   rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_sub;
   rclcpp::CallbackGroup::SharedPtr lidar_cb_group, imu_cb_group;
 
@@ -340,6 +344,7 @@ private:
   double vf_res_;
 
   bool imu_calibrate_;
+  bool imu_normalized_; // modify by h2q
   bool calibrate_gyro_;
   bool calibrate_accel_;
   bool gravity_align_;
