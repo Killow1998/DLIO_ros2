@@ -18,8 +18,8 @@
     frames/lidar: lidar
     frames/imu: imu
 
-    map/waitUntilMove: true
-    map/dense/filtered: false
+    map/waitUntilMove: false
+    map/dense/filtered: true
     map/sparse/leafSize: 0.25
 
     odom/gravity: 9.80665
@@ -32,7 +32,7 @@
     odom/imu/bufferSize: 5000
 
     odom/preprocessing/cropBoxFilter/size: 1.0
-    odom/preprocessing/voxelFilter/res: 0.25
+    odom/preprocessing/voxelFilter/res: 0.1
 
     odom/keyframe/threshD: 1.0
     odom/keyframe/threshR: 45.0

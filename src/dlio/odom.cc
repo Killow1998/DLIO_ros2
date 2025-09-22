@@ -217,9 +217,6 @@ void dlio::OdomNode::getParams() {
   // Compute time offset between lidar and imu
   dlio::declare_param(this, "odom/computeTimeOffset", this->time_offset_, false);
 
-  // Compute time offset between lidar and imu
-  ros::param::param<bool>("~dlio/odom/computeTimeOffset", this->time_offset_, false);
-
   // Keyframe Threshold
   dlio::declare_param(this, "odom/keyframe/threshD", this->keyframe_thresh_dist_, 0.1);
   dlio::declare_param(this, "odom/keyframe/threshR", this->keyframe_thresh_rot_, 1.0);
@@ -1892,11 +1889,7 @@ void dlio::OdomNode::buildSubmap(State vehicle_state) {
   // remove duplicate indices
   auto last = std::unique(this->submap_kf_idx_curr.begin(), this->submap_kf_idx_curr.end());
   this->submap_kf_idx_curr.erase(last, this->submap_kf_idx_curr.end());
-
-  // remove duplicate indices
-  auto last = std::unique(this->submap_kf_idx_curr.begin(), this->submap_kf_idx_curr.end());
-  this->submap_kf_idx_curr.erase(last, this->submap_kf_idx_curr.end());
-
+  
   // check if submap has changed from previous iteration
   if (this->submap_kf_idx_curr != this->submap_kf_idx_prev){
 

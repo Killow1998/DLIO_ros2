@@ -11,6 +11,7 @@
  ***********************************************************/
 
 #include "rclcpp/rclcpp.hpp"
+#include <rcpputils/filesystem_helper.hpp>
 
 namespace dlio {
 
