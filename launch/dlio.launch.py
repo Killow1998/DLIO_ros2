@@ -10,7 +10,7 @@
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.conditions import IfCondition   
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -76,7 +76,10 @@ def generate_launch_description():
         output='screen',
         parameters=[dlio_yaml_path, dlio_params_yaml_path],
         remappings=[
-            ('keyframes', 'dlio/odom_node/pointcloud/keyframe'),
+            # ('keyframes', 'patchworkpp/nonground'),
+            ('keyframes', 'dlio/odom_node/pointcloud/deskewed'),
+            # ('keyframes', 'dlio/odom_node/pointcloud/keyframe'),
+            ('map', 'dlio/map_node/map'),
         ],
     )
 

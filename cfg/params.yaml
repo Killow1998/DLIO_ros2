@@ -20,7 +20,8 @@
 
     map/waitUntilMove: false
     map/dense/filtered: true
-    map/sparse/leafSize: 0.25
+    map/sparse/leafSize: 0.005
+    map/dense_input/skip: 1
 
     odom/gravity: 9.80665
     odom/computeTimeOffset: true

@@ -175,7 +175,6 @@ private:
 
   // Preprocessing
   pcl::CropBox<PointType> crop;
-  pcl::VoxelGrid<PointType> voxel;
 
   // Point Clouds
   pcl::PointCloud<PointType>::ConstPtr original_scan;
